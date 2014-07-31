@@ -27,6 +27,7 @@ db = mongoose.connection
 db.on 'error', (err)-> console.log err
 db.once 'open', -> console.log 'db is opened'
 
+require "./controllers/routes"
 require "./controllers/user"
 require "./controllers/information"
 require "./controllers/comment"

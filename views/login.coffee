@@ -17,24 +17,24 @@ html ->
     form method:'post',action:'/login',->
       div class:"container fixed-width center-block", id:'createUserModal', style:'margin-top:80px;', ->
         div class:"center-block", id:"loginPanel", ->
-          p class:"text-center", id:'loginLogo', ->'GBCONF»áÒéÔ¤Ô¼¹ÜÀíÏµÍ³'
+          p class:"text-center", id:'loginLogo', ->'GBCONFä¼šè®®é¢„çº¦ç®¡ç†ç³»ç»Ÿ'
           div class:"form-horizontal", 'role':"form", ->
             div class:"form-group ", ->
               div class:"col-xs-12", ->
-                input type:"text", class:"form-control",style:'border-radius:6px 6px 0 0;', id:'nameTxt', name:'username', placeholder:'ÓÃ»§Ãû', ->
-                input type:"password", class:"form-control ",style:'border-radius:0 0 6px 6px;margin-top:-1px;', id:'passwordTxt', name:'password', placeholder:'ÃÜÂë', ->
+                input type:"text", class:"form-control",style:'border-radius:6px 6px 0 0;', id:'nameTxt', name:'username', placeholder:'ç”¨æˆ·å', ->
+                input type:"password", class:"form-control ",style:'border-radius:0 0 6px 6px;margin-top:-1px;', id:'passwordTxt', name:'password', placeholder:'å¯†ç ', ->
             coffeescript ->
               $('#nameTxt').focus()
             div class:"form-group", ->
               div class:"col-xs-12", ->
-                button class:"btn btn-default col-xs-12 ", id:"loginBtn",type:"button",onclick:'login()', ->'µÇÂ¼'
+                button class:"btn btn-default col-xs-12 ", id:"loginBtn",type:"button",onclick:'login()', ->'ç™»å½•'
             div ->
               if @error?
                 div '#status',style:'display:none;', ->"#{@error}"
 
     div class:"navbar navbar-default  input-group-addon-format navbar-fixed-bottom ", role:"navigation", ->
       div class:"container fixed-width", ->
-        a class:"center-block text-center", id:"loginNav", href:"#", ->'? ÉÏº£½ðÇÅÐÅÏ¢¹É·ÝÓÐÏÞ¹«Ë¾ 2014'
+        a class:"center-block text-center", id:"loginNav", href:"#", ->'Â© ä¸Šæµ·é‡‘æ¡¥ä¿¡æ¯è‚¡ä»½æœ‰é™å…¬å¸ 2014'
 
   coffeescript ->
     $ ->
@@ -45,10 +45,10 @@ html ->
       name = $('#nameTxt').val().trim()
       pwd = $('#passwordTxt').val().trim()
 
-      return popBy('#nameTxt', false, 'ÓÃ»§Ãû²»ÄÜÎª¿Õ') if(name == '' )
-      return popBy('#nameTxt', false, 'ÓÃ»§Ãû³¤¶ÈÖ»ÄÜÎª4£­16Î»') if(name.length > 16 || name.length < 4  )
-      return popBy('#passwordTxt', false, 'ÃÜÂë²»ÄÜÎª¿Õ') if(pwd == '')
-      return popBy('#passwordTxt', false, 'ÃÜÂë³¤¶ÈÖ»ÄÜÎª4£­16Î»') if(pwd.length > 16 || pwd.length < 4 )
+      return popBy('#nameTxt', false, 'ç”¨æˆ·åä¸èƒ½ä¸ºç©º') if(name == '' )
+      return popBy('#nameTxt', false, 'ç”¨æˆ·åé•¿åº¦åªèƒ½ä¸º4ï¼16ä½') if(name.length > 16 || name.length < 4  )
+      return popBy('#passwordTxt', false, 'å¯†ç ä¸èƒ½ä¸ºç©º') if(pwd == '')
+      return popBy('#passwordTxt', false, 'å¯†ç é•¿åº¦åªèƒ½ä¸º4ï¼16ä½') if(pwd.length > 16 || pwd.length < 4 )
       $("#passwordTxt").val(hex_md5(pwd))
       $("form").submit()
 

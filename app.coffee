@@ -31,5 +31,7 @@ require "./controllers/user"
 require "./controllers/information"
 require "./controllers/comment"
 
+
+
 app.listen 3003, ->
   console.log 'listening on port 3003'

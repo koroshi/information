@@ -29,8 +29,6 @@ db.once 'open', -> console.log 'db is opened'
 
 require "./controllers/user"
 require "./controllers/information"
-
-
 require "./controllers/comment"
 
 app.listen 3003, ->

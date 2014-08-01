@@ -23,7 +23,7 @@
             if(txt.trim().length == 0) {
                 if(isRequired == null) return true;
                 else {
-                    popBy(obj, false, des+ "不能为空");
+                    popBy(obj, des+ "不能为空");
                     return false;
                 }
             }
@@ -34,12 +34,12 @@
             var action = this.actions[p];
 
             if(action == null) {
-                popBy(obj, false, '对应的正则表达式不存在');
+                popBy(obj, '对应的正则表达式不存在');
                 return false;
             }
 
             if(!action.reg.test(txt)) {
-                popBy(obj, false, des+ action.err);
+                popBy(obj, des+ action.err);
                 return false;
             }
 

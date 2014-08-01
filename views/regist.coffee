@@ -5,14 +5,6 @@ html ->
     link href:"css/bootstrap.css", rel:"stylesheet"
     link href:"css/common.css", rel:"stylesheet"
     title '信息管理系统'
-#    script src:"/lib/jquery.js"
-#    script src:"/lib/bootstrap.js"
-#    script src:"/lib/md5.js"
-#    script src:"/lib/common.js"
-#    script src:"/lib/angular.js"
-#    script src:"/lib/validator.js"
-#    script src:"/lib/require.js"
-#    script src:"/js/reg/controller.js"
 
     script 'data-main':"js/reg/main.js", src:"lib/require.js"
 #    script 'data-main':"lib/built.js", src:"lib/require.js"
@@ -20,7 +12,6 @@ html ->
 
   body style:"height:100%; background-color: #428bca;", ->
     div class:"container fixed-width center-block", id:'createUserModal', style:'margin-top:80px; width:500px;', 'ng-controller':'regCtrl',->
-      p -> '{{ w }} x {{ h }}'
       div class:"center-block", id:"loginPanel", ->
         p class:"text-center", id:'loginLogo', ->'信息管理系统'
         div class:"form-horizontal", 'role':"form", ->
@@ -51,10 +42,3 @@ html ->
           div ->
             if @error?
               div '#status',style:'display:none;', ->"#{@error}"
-
-
-
-
-#  script 'data-main':"js/reg/main.js", src:"lib/require.js"
-
-

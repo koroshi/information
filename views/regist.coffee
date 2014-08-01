@@ -12,8 +12,9 @@ html ->
 #    script src:"/lib/angular.js"
 #    script src:"/lib/validator.js"
 #    script src:"/lib/require.js"
-    script 'data-main':"js/reg/main.js", src:"lib/require.js"
 #    script src:"/js/reg/controller.js"
+
+    script 'data-main':"js/reg/main.js", src:"lib/require.js"
 #    script 'data-main':"lib/built.js", src:"lib/require.js"
 
 
@@ -54,6 +55,6 @@ html ->
 
 
 
-
+#  script 'data-main':"js/reg/main.js", src:"lib/require.js"
 
 

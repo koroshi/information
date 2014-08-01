@@ -11,10 +11,18 @@ require.config({
         controller:'../js/reg/controller',
         directive:'../js/reg/directive',
         service:'../js/reg/service',
-        bootxx:'../js/reg/bootxx',
         app:'../js/reg/app'
+    },
+    shim:{
+        'validator': ['jquery', 'common']
     }
 });
 
 
-require(['bootxx']);
+require(['jquery', 'common', 'bootstrap','app',  'service', 'controller', 'validator'], function() {
+    validator.bind();
+//    angular.bootstrap(document, ['myApp']);
+    angular.element(document).ready(function() {
+        angular.bootstrap(document, ['myApp']);
+    });
+});

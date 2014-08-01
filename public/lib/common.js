@@ -59,7 +59,7 @@ function pagerDelegate(obj, method, mode) {
         var args = [];
         args.push(mode);
         method.apply(obj, args);
-    }
+    };
 
     return delegate;
 }
@@ -75,14 +75,14 @@ String.format = function () {
     }
 
     return str;
-}
+};
 
 String.prototype.format = function () {
     var args = arguments;
     return this.replace(/\{(\d+)\}/g, function (m, i) {
         return args[i];
     });
-}
+};
 
 function readonly() {
     this.blur();

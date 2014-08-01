@@ -1,16 +1,17 @@
 doctype 5
-html ->
+html 'ng-app',->
   head ->
     meta name:"viewport", content="width=device-width, initial-scale=1.0", charset:'utf-8'
     link href:"css/bootstrap.css", rel:"stylesheet"
     link href:"css/common.css", rel:"stylesheet"
     title 'GBCONF'
-    script src:"/lib/jquery-1.10.2.js"
+    script src:"/lib/jquery.js"
     script src:"/lib/bootstrap.js"
     script src:"/lib/underscore.js"
     script src:"/lib/backbone.js"
     script src:"/lib/md5.js"
     script src:"/lib/common.js"
+    script src:"/lib/angular.js"
 
 
   body style:"height:100%; background-color: #428bca;",->
@@ -32,10 +33,6 @@ html ->
             div ->
               if @error?
                 div '#status',style:'display:none;', ->"#{@error}"
-
-    div class:"navbar navbar-default  input-group-addon-format navbar-fixed-bottom ", role:"navigation", ->
-      div class:"container fixed-width", ->
-        a class:"center-block text-center", id:"loginNav", href:"#", ->'© 上海金桥信息股份有限公司 2014'
 
   coffeescript ->
     $ ->

@@ -15,9 +15,9 @@ html ->
 
   body style:"height:100%; background-color: #428bca;",->
     form method:'post',action:'/login',->
-      div class:"container fixed-width center-block", id:'createUserModal', style:'margin-top:80px;', ->
+      div class:"container fixed-width center-block", id:'createUserModal', style:'margin-top:80px; width:500px;', ->
         div class:"center-block", id:"loginPanel", ->
-          p class:"text-center", id:'loginLogo', ->'GBCONF会议预约管理系统'
+          p class:"text-center", id:'loginLogo', ->'信息管理系统'
           div class:"form-horizontal", 'role':"form", ->
             div class:"form-group ", ->
               div class:"col-xs-12", ->
@@ -27,7 +27,8 @@ html ->
               $('#nameTxt').focus()
             div class:"form-group", ->
               div class:"col-xs-12", ->
-                button class:"btn btn-default col-xs-12 ", id:"loginBtn",type:"button",onclick:'login()', ->'登录'
+                a class:"btn btn-default col-xs-3 ", href:'/reg', ->'注册'
+                button class:"btn btn-default col-xs-8 col-xs-offset-1", id:"loginBtn",type:"button",onclick:'login()', ->'登录'
             div ->
               if @error?
                 div '#status',style:'display:none;', ->"#{@error}"

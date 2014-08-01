@@ -1,6 +1,6 @@
 ﻿if(!window.console) window.console = {
     log:function(){}
-}
+};
 
 function popBy(obj, flag, message, direct) {
     $(obj).popover('destroy');
@@ -10,8 +10,11 @@ function popBy(obj, flag, message, direct) {
         content: message
     });
     if (!flag) {
+
+        clearTimeout($(obj).data('timeout'));
         $(obj).popover('show');
-        setTimeout(function () { $(obj).popover('hide'); }, 3000);
+        var timeout = setTimeout(function () { $(obj).popover('hide'); }, 3000);
+        $(obj).data('timeout',timeout);
         return false;
     }
     else {

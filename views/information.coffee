@@ -149,5 +149,4 @@ block 'main', ->
 
 
 block 'lazyscript', ->
-  script src: '/js/md5.js'
 

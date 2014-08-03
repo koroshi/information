@@ -3,7 +3,8 @@ schema = new Schema
   email: {type:String, default :''}
   phone: {type:String, default :''}
   password: {type:String, default :''}
-  role: {type:String, default :''}
+  address: {type:String, default :''}
+  role: {type:String, default :'normal'}
   createTime: {type:Date, default : new Date()}
   status:{type:Number, default :0}
 

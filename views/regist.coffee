@@ -6,7 +6,7 @@ html ->
     link href:"css/common.css", rel:"stylesheet"
     title '信息管理系统'
 
-    script 'data-main':"js/reg/main.js", src:"lib/require.js"
+    script 'data-main':"js/reg/reg.js", src:"lib/require.js"
 #    script 'data-main':"lib/built.js", src:"lib/require.js"
 
 
@@ -23,8 +23,8 @@ html ->
               input type:"password", class:"form-control validator", validator:"password", required:"required",
               description:'密码', id:'txtPassword', 'ng-model':'user.password',  placeholder:'密码', ->
 
-              input type:"text", class:"form-control validator", validator:"specialChar", required:"required",
-              description:'确认密码',id:'txtConfirm','ng-model':'user.password',  placeholder:'确认密码', ->
+              input type:"password", class:"form-control validator", validator:"specialChar", required:"required",
+              description:'确认密码',id:'txtConfirm','ng-model':'user.confirm', compare:'#txtPassword',  placeholder:'确认密码', ->
 
               input type:"text", class:"form-control validator", validator:"email", required:"required",
               description:'邮箱', id:'txtEmail', 'ng-model':'user.email',  placeholder:'邮箱', ->
@@ -38,7 +38,7 @@ html ->
           div class:"form-group", ->
             div class:"col-xs-12", ->
               a class:"btn btn-default col-xs-3 ", href:'/login', ->'登录'
-              button class:"btn btn-default col-xs-8 col-xs-offset-1 ", id:"loginBtn",type:"button",'ng-click':'register()', ->'注册'
+              button class:"btn btn-default col-xs-8 col-xs-offset-1 ", id:"btnReg",type:"button",'ng-click':'register()', ->'注册'
           div ->
             if @error?
               div '#status',style:'display:none;', ->"#{@error}"

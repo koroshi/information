@@ -5,12 +5,7 @@ html ->
     link href:"/css/bootstrap.css", rel:"stylesheet"
     block 'title', ->
       title 'information'
-    script src:"/lib/jquery-1.10.2.js"
-    script src:"/lib/bootstrap.js"
-    script src: '/lib/moment.js'
-    script src: '/lib/common.js'
-    script src: '/lib/underscore.js'
-    script src:"/lib/jquery.cookies.js"
+    script 'data-main':"js/reg/reg.js", src:"lib/require.js"
   body style:'min-width:1280px;', ->
     div class:"modal fade", id:"modifyPersonalModal", 'tabindex':"-1", 'role':"dialog", 'aria-labelledby':"modifyPersonalModalLabel", 'aria-hidden':"true", ->
       div class:"modal-dialog", ->
@@ -95,18 +90,19 @@ html ->
                 b class:"caret"
 
           coffeescript ->
+            require ['/lib/jquery.js', '/lib/jquery.cookies.js'], () ->
             #$('.child-nav').width(screen.width)
-            actived = location.pathname
+              actived = location.pathname
 
-            type = $.cookie('type')
+              type = $.cookie('type')
 
-            #当前用户不是管理员
-            #            $('.adminauthor').hide() if type? isnt 'admin'
+              #当前用户不是管理员
+              #            $('.adminauthor').hide() if type? isnt 'admin'
 
 
-            $.each $('.nav li a'), (i,o) ->
-              if actived is $(o).attr('href')
-                $(o).parent().addClass('active').siblings('li').removeClass('active')
+              $.each $('.nav li a'), (i,o) ->
+                if actived is $(o).attr('href')
+                  $(o).parent().addClass('active').siblings('li').removeClass('active')
 
           ul class:"nav navbar-nav navbar-right", ->
             li class:"dropdown", ->
@@ -114,8 +110,9 @@ html ->
                 b id: "usertype", style:"display:none", -> 'kk'
                 b id: "username", -> 'tt'
                 coffeescript ->
-                  $('#username').html($.cookie('nickname') or '')
-                  $('#usertype').html($.cookie('usertype') or '')
+                  require ['/lib/jquery.js', '/lib/jquery.cookies.js'], () ->
+                    $('#username').html($.cookie('nickname') or '')
+                    $('#usertype').html($.cookie('usertype') or '')
                 b class:"caret"
               ul class:"dropdown-menu", ->
                 li ->

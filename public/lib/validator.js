@@ -1,6 +1,14 @@
 (function($){
     validator = {
         className:'validator',
+        compareMode: {
+            lt : '<',
+            eq : '==',
+            gt : '>',
+            le : '<=',
+            ge : '>=',
+            ne : '!='
+        },
         actions :{
             email:{reg:/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, err:'格式不正确'},
             phone:{reg:/^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/, err:'格式不正确'},
@@ -18,14 +26,21 @@
 
             var txt = arguments[1] || $(obj).val() || $(obj).html();
 
-            var isRequired = $(obj).attr('required');
+            var isRequired = $(obj).attr('required');//是否必须
+            var isCompare = $(obj).attr('compare');//是否比较
 
             if(txt.trim().length == 0) {
-                if(isRequired == null) return true;
-                else {
-                    popBy(obj, des+ "不能为空");
+                if(isRequired) {
+                    common.popBy(obj, des+ "不能为空");
                     return false;
                 }
+
+                if(isCompare && !this.compare(obj, isCompare.split('|')[0], isCompare.split('|')[1])) {
+                    common.popBy(obj, des+ "输入不匹配");
+                    return false;
+                }
+
+                return true;
             }
 
 
@@ -34,17 +49,33 @@
             var action = this.actions[p];
 
             if(action == null) {
-                popBy(obj, '对应的正则表达式不存在');
+                common.popBy(obj, '对应的正则表达式不存在');
                 return false;
             }
 
             if(!action.reg.test(txt)) {
-                popBy(obj, des+ action.err);
+                common.popBy(obj, des+ action.err);
+                return false;
+            }
+
+            if(isCompare && !this.compare(obj, isCompare.split('|')[0], isCompare.split('|')[1])) {
+                common.popBy(obj, des+ "输入不匹配");
                 return false;
             }
 
             return true;
 
+        },
+        /*mode: lt*/
+        compare: function(obj, target, mode) {
+            if($(obj).length == 0 || $(target).length == 0) return false;
+
+            mode = mode || 'eq';
+
+            var objVal =  $(obj).val() || $(obj).html();
+            var targetVal =  $(target).val() || $(target).html();
+
+            return eval(objVal + this.compareMode[mode] + targetVal);
         },
 
         bind:function(parent) {

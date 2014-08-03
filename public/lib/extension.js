@@ -156,6 +156,6 @@ function extend(subClass, superClass) {
         o.trigger.apply(o, arguments);
     };
 
-}(jQuery));
+}($));
 
 

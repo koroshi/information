@@ -2,9 +2,9 @@ define([
     'app',
     'service',
 ], function (app) {
-    app.controller('regCtrl',['$scope', 'validator', '$http', 'common', '$window', regCtrl]);
+    app.controller('regCtrl',['$scope', 'service', '$http', '$window', regCtrl]);
 
-    function regCtrl($scope, validator, $http, common, $window) {
+    function regCtrl($scope, service, $http, $window) {
         $scope.user = {
             name : '',
             password : '',
@@ -15,11 +15,12 @@ define([
         };
 
         $scope.register = function() {
-            if(!validator.validateAll('#registArea')) return;
+            if(!service.validator.validateAll('#registArea')) return;
             $http.post('/user', $scope.user).success(function(json) {
-                if(!json) return common.popBy('#btnReg', '未知的错误');
-                if(!json.code || json.code == 'fail')  return common.popBy('#btnReg', json.result);
+                if(!json) return service.common.popBy('#btnReg', '未知的错误');
+                if(!json.code || json.code == 'fail')  return service.common.popBy('#btnReg', json.result);
                 $window.location.href = "/";
+
             })
         }
     }

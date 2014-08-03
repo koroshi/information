@@ -18,7 +18,7 @@ html ->
           div class:"form-group ", ->
             div class:"col-xs-12", id:'registArea', ->
               input type:"text", class:"form-control validator", validator:"specialChar", required:"required",
-              description:'用户名', id:'txtName', 'ng-model':'user.name',  'ng-model':'username', placeholder:'用户名', ->
+              description:'用户名', id:'txtName', 'ng-model':'user.name', placeholder:'用户名', ->
 
               input type:"password", class:"form-control validator", validator:"password", required:"required",
               description:'密码', id:'txtPassword', 'ng-model':'user.password',  placeholder:'密码', ->

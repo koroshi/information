@@ -5,7 +5,8 @@ html ->
     link href:"/css/bootstrap.css", rel:"stylesheet"
     block 'title', ->
       title 'information'
-    script 'data-main':"js/reg/reg.js", src:"lib/require.js"
+    block 'script', ->
+
   body style:'min-width:1280px;', ->
     div class:"modal fade", id:"modifyPersonalModal", 'tabindex':"-1", 'role':"dialog", 'aria-labelledby':"modifyPersonalModalLabel", 'aria-hidden':"true", ->
       div class:"modal-dialog", ->
@@ -89,28 +90,24 @@ html ->
                 text ' 帮助'
                 b class:"caret"
 
-          coffeescript ->
-            require ['/lib/jquery.js', '/lib/jquery.cookies.js'], () ->
-            #$('.child-nav').width(screen.width)
-              actived = location.pathname
-
-              type = $.cookie('type')
-
-              #当前用户不是管理员
-              #            $('.adminauthor').hide() if type? isnt 'admin'
-
-
-              $.each $('.nav li a'), (i,o) ->
-                if actived is $(o).attr('href')
-                  $(o).parent().addClass('active').siblings('li').removeClass('active')
-
           ul class:"nav navbar-nav navbar-right", ->
             li class:"dropdown", ->
               a href:'javascript:void(0)', class:"dropdown-toggle", 'data-toggle':"dropdown", ->
                 b id: "usertype", style:"display:none", -> 'kk'
                 b id: "username", -> 'tt'
                 coffeescript ->
-                  require ['/lib/jquery.js', '/lib/jquery.cookies.js'], () ->
+                  require.config
+                    paths:
+                      'jquery':'/lib/jquery'
+                      'jquery.cookies':'/lib/jquery.cookies'
+                    shim:
+                      'jquery.cookies': ['jquery'],
+                  require ['jquery', 'jquery.cookies'], () ->
+                    actived = location.pathname
+                    type = $.cookie('type')
+                    $.each $('.nav li a'), (i,o) ->
+                      if actived is $(o).attr('href')
+                        $(o).parent().addClass('active').siblings('li').removeClass('active')
                     $('#username').html($.cookie('nickname') or '')
                     $('#usertype').html($.cookie('usertype') or '')
                 b class:"caret"

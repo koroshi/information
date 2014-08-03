@@ -1,13 +1,15 @@
 define([
     'app',
     'validator',
-    'common'
+    'common',
+    'underscore'
 ], function (app) {
 
     app.factory('service', function() {
         return {
             validator:validator,
-            common:common
+            common:common,
+            _:_
         };
     })
 

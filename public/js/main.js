@@ -5,6 +5,7 @@ define([], function() {
             jquery: 'jquery',
             bootstrap: 'bootstrap',
             angular:'angular',
+            underscore: 'underscore',
             extension:'extension',
             common: '/js/common',
             validator: 'validator',
@@ -19,8 +20,6 @@ define([], function() {
         }
     });
 
-//    require(['jquery', 'bootstrap'], function() {
-//        console.log('load complete')
-//    })
+    require(['jquery', 'bootstrap', 'extension'])
 })
 

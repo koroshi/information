@@ -8,3 +8,8 @@ app.post '/user', (req, res) ->
   user.save (err, doc) ->
     return res.json JsonResult.getError(err.message) if err?
     res.json JsonResult.getSuccess(doc)
+
+app.get '/users', (req, res) ->
+  User.find().exec (err, docs) ->
+    return res.json JsonResult.getError(err.message) if err?
+    res.json JsonResult.getSuccess(docs)

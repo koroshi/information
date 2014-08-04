@@ -20,6 +20,6 @@ define([], function() {
         }
     });
 
-    require(['jquery', 'bootstrap', 'extension'])
-})
+    require(['jquery', 'bootstrap', 'extension', 'underscore','validator', 'common'])
+});
 

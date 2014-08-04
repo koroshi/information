@@ -77,13 +77,13 @@ block 'main', ->
             button type:"button", class:"btn btn-default", 'data-dismiss':"modal",->
               text '关闭'
 
-  div id:'user', ->
+  div id:'user', style:'padding-top:50px', 'ng-controller':'usersCtrl', ->
     div class:"well well-sm fix-top-2", ->
       div class :"container fixed-width", ->
         button type:"button", id:'btnShowCreateModal', class:"btn btn-default", ->
           span class:"glyphicon glyphicon-user", ->
           text ' 添加'
-        button type:"button", class:"btn btn-default gap",  id:'deleteBtn', ->
+        button type:"button", class:"btn btn-default gap",  id:'btnDelete', 'ng-click':'removeUsers(this, $event.target)', ->
           span class:"glyphicon glyphicon-trash", ->
           text ' 删除'
         div class: 'col-xs-3 input-group pull-right searchPanel', ->
@@ -96,7 +96,7 @@ block 'main', ->
         img src: 'images/header.png',class: 'circlePic', ->
         text '&nbsp新闻'
       div class: 'panel panel-default', ->
-        table class: 'table table-striped', style:"table-layout:fixed;word-wrap:break-word;", id: 'tblUses', 'ng-controller':'usersCtrl', ->
+        table class: 'table table-striped', style:"table-layout:fixed;word-wrap:break-word;", id: 'tblUses', ->
           thead class:"thead-color btn-primary",->
             tr ->
               th style:'width:30px', ->

@@ -7,7 +7,7 @@ block 'script', ->
   script src:"/lib/require.js", 'data-main':"js/information/information.js"
 
 block 'main', ->
-  div class:"modal fade ", id:"createUserModal", 'tabindex':"-1", 'role':"dialog", 'aria-labelledby':"createUserModalLabel", 'aria-hidden':"true", ->
+  div class:"modal fade ", id:"createUserModal", 'tabindex':"-1", 'role':"dialog", 'aria-labelledby':"createUserModalLabel",'aria-hidden':"true",'ng-controller':'editCtrl', ->
     div class:"modal-dialog", ->
       div class:"modal-content", ->
         div class:"modal-header", ->
@@ -16,26 +16,26 @@ block 'main', ->
           h4 class:"modal-title", id:"createUserModalLabel", ->
             text '创建用户'
         div class:"modal-body", ->
-          form class:"form-horizontal", ->
+          div class:"form-horizontal", ->
             div class: "input-group col-xs-12", ->
               span class: 'input-group-addon addon-width-4 ', style:'width:95px; text-align:right;', ->'姓名：'
-              input class: "form-control validator", validator:'username', id:'extName', description:'姓名', required:'', type:"text", name:"name",->
-            br ->
-            div class: "input-group col-xs-12", ->
-              span class: 'input-group-addon addon-width-4', -> '公司名称：'
-              input class: "form-control validator",  validator:'specialChar', id:'extCompany', description:'公司名称', type:"text", name:"company", ->
+              input class: "form-control validator", validator:'specialChar', id:'txtName',
+              description:'姓名', required:'', type:"text", value:'{{user.name}}', ->
             br ->
             div class: "input-group col-xs-12", ->
               span class: 'input-group-addon addon-width-4', style:'width:95px; text-align:right;', -> '邮箱：'
-              input class: "form-control validator",  validator:'email', id:'extEmail', description:'邮箱', type:"text", name:"email", ->
+              input class: "form-control validator",  validator:'email', id:'txtEmail',
+              description:'邮箱', type:"text",  value:'{{user.email}}',
             br ->
             div class: "input-group col-xs-12", ->
               span class: 'input-group-addon addon-width-4', -> '手机号码：'
-              input class: "form-control validator", type:"text",  validator:'tel', id:'extPhone', description:'手机号码', name:"phone", ->
+              input class: "form-control validator", type:"text",  validator:'phone', id:'txtPhone',
+              description:'手机号码', value:'{{user.phone}}',
             br ->
             div class: "input-group col-xs-12", ->
               span class: 'input-group-addon addon-width-4', style:'width:95px; text-align:right;', -> '地址：'
-              input class: "form-control validator", validator:'phone', id:'extTel', description:'地址',  required:'', type:"text", name:"phone", ->
+              input class: "form-control validator", validator:'specialChar', id:'txtAddr',
+              description:'地址',  required:'', type:"text", value:'{{user.address}}',
         div class:"modal-footer",->
           button class:"btn btn-primary  col-xs-offset-6", id:"btnCreateUser", type:"button", ->'保存'
 
@@ -79,7 +79,7 @@ block 'main', ->
               td class:"col-xs-3", 'ng-bind':'user.email', ->
               td class:"col-xs-3", ->
                 a href:'javascript:void(0)', 'ng-click':'remove(this, $target.event)', id:'{{user._id}}', -> '删除'
-                a href:'#', -> '编辑'
+                a href:'javascript:void(0)',  'ng-click':'edit(this, $target.event)', -> '编辑'
 
 
 block 'lazyscript', ->

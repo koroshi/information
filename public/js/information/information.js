@@ -4,7 +4,7 @@ require.config({
     }
 });
 
-define(["main", 'app',  'service', 'controller'], function() {
+define(["main", 'app',  'service', 'controller', 'editCtrl'], function() {
     require(['validator'], function() {
         validator.bind();
         angular.element(document).ready(function() {

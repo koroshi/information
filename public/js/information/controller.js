@@ -49,6 +49,14 @@ define([
                     $scope.$apply();
                 });
             }
+        };
+
+        $scope.edit = function(scope, obj) {
+            var editScope = $('#createUserModal').scope();
+            editScope.user = scope.user;
+
+            $('#createUserModal').modal('show');
+
         }
     }
 });

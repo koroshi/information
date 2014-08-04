@@ -22,7 +22,7 @@ app.delete '/user/:id', (req, res)->
     res.json JsonResult.getSuccess(count)
 
 app.delete '/users', (req, res) ->
-  ids = req.body.ids
+  ids = req.body
   return res.json JsonResult.getError('用户编号不存在') unless ids
   User.remove {_id:{$in:ids}}, (err, count) ->
     return res.json JsonResult.getError(err.message) if err?

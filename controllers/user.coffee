@@ -9,6 +9,17 @@ app.post '/user', (req, res) ->
     return res.json JsonResult.getError(err.message) if err?
     res.json JsonResult.getSuccess(doc)
 
+app.put '/user', (req, res) ->
+  user = req.body
+  console.log(user.name)
+  return res.json JsonResult.getError('用户不存在') unless user?._id
+  User.findByIdAndUpdate user._id, user, (err, doc) ->
+    console.log(doc.name)
+    return res.json JsonResult.getError(err.message) if err
+    res.json JsonResult.getSuccess(doc)
+
+
+
 app.get '/users', (req, res) ->
   User.find().exec (err, docs) ->
     return res.json JsonResult.getError(err.message) if err?

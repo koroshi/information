@@ -20,7 +20,7 @@ block 'main', ->
             div class: "input-group col-xs-12", ->
               span class: 'input-group-addon addon-width-4 ', style:'width:95px; text-align:right;', ->'姓名：'
               input class: "form-control validator", validator:'specialChar', id:'txtName',
-              description:'姓名', required:'', type:"text", value:'{{user.name}}', ->
+              description:'姓名', required:'', type:"text", 'ng-model':'user.name', ->
             br ->
             div class: "input-group col-xs-12", ->
               span class: 'input-group-addon addon-width-4', style:'width:95px; text-align:right;', -> '邮箱：'
@@ -37,7 +37,7 @@ block 'main', ->
               input class: "form-control validator", validator:'specialChar', id:'txtAddr',
               description:'地址',  required:'', type:"text", value:'{{user.address}}',
         div class:"modal-footer",->
-          button class:"btn btn-primary  col-xs-offset-6", id:"btnCreateUser", type:"button", ->'保存'
+          button class:"btn btn-primary  col-xs-offset-6", id:"btnSaveUser", type:"button", 'ng-click':'update()',  ->'保存'
 
           button type:"button", class:"btn btn-default", 'data-dismiss':"modal",->
             text '关闭'
@@ -79,7 +79,7 @@ block 'main', ->
               td class:"col-xs-3", 'ng-bind':'user.email', ->
               td class:"col-xs-3", ->
                 a href:'javascript:void(0)', 'ng-click':'remove(this, $target.event)', id:'{{user._id}}', -> '删除'
-                a href:'javascript:void(0)',  'ng-click':'edit(this, $target.event)', -> '编辑'
+                a href:'javascript:void(0)',  'ng-click':'showEditModal(this, $target.event)', -> '编辑'
 
 
 block 'lazyscript', ->

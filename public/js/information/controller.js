@@ -51,12 +51,13 @@ define([
             }
         };
 
-        $scope.edit = function(scope, obj) {
+        $scope.showEditModal = function(scope, obj) {
             var editScope = $('#createUserModal').scope();
-            editScope.user = scope.user;
+
+            for(var each in scope.user)
+                editScope.user[each] = scope.user[each]
 
             $('#createUserModal').modal('show');
-
         }
     }
 });

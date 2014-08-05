@@ -1,10 +1,9 @@
 define([
-    'app',
-    'service',
+    'app'
 ], function (app) {
-    app.controller('usersCtrl',['$scope', 'service', '$http', '$window', usersCtrl]);
+    app.controller('usersCtrl',['$scope', '$http', '$window', usersCtrl]);
 
-    function usersCtrl($scope, service, $http, $window, $element) {
+    function usersCtrl($scope, $http, $window, $element) {
         $http.get('/users').success(function(json) {
             if(!json) return;
             if(!json.code || json.code == 'fail')  return;

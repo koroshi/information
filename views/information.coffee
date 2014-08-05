@@ -45,40 +45,39 @@ block 'main', ->
   div id:'user', style:'padding-top:50px', 'ng-controller':'usersCtrl', onselectstart:'return false', ->
     div class:"well well-sm fix-top-2", ->
       div class :"container fixed-width", ->
-        button type:"button", id:'btnShowCreateModal', class:"btn btn-default", 'data-toggle':"modal", 'data-target':"#createUserModal", ->
-          span class:"glyphicon glyphicon-user", ->
-          text ' 添加'
-        button type:"button", class:"btn btn-default gap",  id:'btnDelete', 'ng-click':'removeUsers(this, $event.target)', ->
+        button type:"button", class:"btn btn-primary gap",  id:'btnDelete', 'ng-click':'removeUsers(this, $event.target)', ->
           span class:"glyphicon glyphicon-trash", ->
           text ' 删除'
         div class: 'col-xs-3 input-group pull-right searchPanel', ->
-          input type:"text", class:"form-control", id:"searchInput", placeholder:"请输入新闻标题", 'ng-model':'search', ->
+          input type:"text", class:"form-control", id:"searchInput", placeholder:"请输入用户名称或者邮箱", 'ng-model':'search', ->
           span class: 'input-group-btn', ->
             button type:"submit", class:"btn btn-default", id:"searchBtn", -> '搜索'
 
     div class: 'container fix-top-2-tablelist-default fixed-width', ->
       h3 class: 'pageInfo', ->
-        img src: 'images/header.png',class: 'circlePic', ->
-        text '&nbsp新闻'
+        img src: '/images/header.png',class: 'circlePic', ->
+        text '&nbsp用户'
       div class: 'panel panel-default', ->
         table class: 'table table-striped', style:"table-layout:fixed;word-wrap:break-word;", id: 'tblUses', ->
           thead class:"thead-color", ->
             tr ->
               th style:'width:30px', ->
                 input type:'checkbox', class :'checkbox', id:'chkAllItems', onclick:'common.selectAllChk()',
-              th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='name'; orderMode=!orderMode", -> '用户名'
-              th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='phone'; orderMode=!orderMode", ->'手机号码'
+              th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='name'; orderMode=!orderMode", -> '用户名'
+              th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='phone'; orderMode=!orderMode", ->'手机号码'
               th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='email'; orderMode=!orderMode", ->'邮箱'
+              th class:"col-xs-2", style:'cursor:pointer', ->'角色'
               th class:"col-xs-3", ->'操作'
           tbody ->
-            tr class:'', 'ng-repeat':'user in users | filter: {name:search} | orderBy:orderColumn:orderMode', ->
+            tr class:'', 'ng-repeat':'user in users | searchFilter:search | orderBy:orderColumn:orderMode', ->
               td style:'width:30px', ->
                 input type:'checkbox', class :'checkbox chkItem', value:'{{user._id}}', onclick:'common.selectItemChk()',
-              td class:"col-xs-3", 'ng-bind':'user.name',  ->
-              td class:"col-xs-3", 'ng-bind':'user.phone', ->
+              td class:"col-xs-2", 'ng-bind':'user.name',  ->
+              td class:"col-xs-2", 'ng-bind':'user.phone', ->
               td class:"col-xs-3", 'ng-bind':'user.email', ->
+              td class:"col-xs-2", 'ng-bind':'user.role | roleFilter', ->
               td class:"col-xs-3", ->
-                a href:'javascript:void(0)', 'ng-click':'remove(this, $target.event)', id:'{{user._id}}', -> '删除'
+                a 'gap', href:'javascript:void(0)', 'ng-click':'remove(this, $target.event)', id:'{{user._id}}', -> '删除'
                 a href:'javascript:void(0)',  'ng-click':'showEditModal(this, $target.event)', -> '编辑'
 
 

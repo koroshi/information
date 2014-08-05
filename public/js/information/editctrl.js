@@ -1,10 +1,9 @@
 define([
-    'app',
-    'service',
+    'app'
 ], function (app) {
-    app.controller('editCtrl',['$scope', 'service', '$http', '$window', editCtrl]);
+    app.controller('editCtrl',['$scope', '$http', '$window', editCtrl]);
 
-    function editCtrl($scope, service, $http, $window, $element) {
+    function editCtrl($scope, $http, $window, $element) {
         $scope.user = {
             _id:'',
             name : '',

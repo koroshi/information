@@ -12,3 +12,6 @@ app.get '/', (req, res) ->
 
 app.get '/comment', (req, res) ->
   res.render 'information'
+
+app.get '/manage/user', (req, res) ->
+  res.render 'manage/user'

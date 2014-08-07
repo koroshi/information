@@ -6,7 +6,7 @@ html ->
     link href:"css/common.css", rel:"stylesheet"
     title '信息管理系统'
 
-    script 'data-main':"js/reg/reg.js", src:"lib/require.js"
+    script 'data-main':"/js/reg/reg.js", src:"/js/lib/require.js"
 #    script 'data-main':"lib/built.js", src:"lib/require.js"
 
 

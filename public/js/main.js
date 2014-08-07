@@ -1,6 +1,6 @@
 define([], function() {
     require.config({
-        baseUrl:'/lib',
+        baseUrl:'/js/lib',
         paths: {
             jquery: 'jquery',
             bootstrap: 'bootstrap',

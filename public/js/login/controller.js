@@ -11,7 +11,6 @@ define([
 
         $scope.login = function(obj) {
             if(!validator.validateAll()) return;
-
             $scope.user.password = hex_md5($scope.user.password);
             $http.post('/login', $scope.user).success(function(json) {
                 if(!json) return common.popBy(obj, '未知的错误');

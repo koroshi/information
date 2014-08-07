@@ -99,8 +99,8 @@ html ->
                 coffeescript ->
                   require.config
                     paths:
-                      'jquery':'/lib/jquery'
-                      'jquery.cookies':'/lib/jquery.cookies'
+                      'jquery':'/js/lib/jquery'
+                      'jquery.cookies':'/js/lib/jquery.cookies'
                     shim:
                       'jquery.cookies': ['jquery'],
                   require ['jquery', 'jquery.cookies'], () ->

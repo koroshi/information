@@ -5,7 +5,7 @@ html ->
     link href:"css/bootstrap.css", rel:"stylesheet"
     link href:"css/common.css", rel:"stylesheet"
     title 'GBCONF'
-    script src:"/lib/require.js", 'data-main':"/js/login/login.js"
+    script src:"/js/lib/require.js", 'data-main':"/js/login/login.js"
 
 
   body style:"height:100%; background-color: #428bca;", 'ng-controller':'loginCtrl', ->
@@ -16,9 +16,9 @@ html ->
           div class:"form-horizontal", 'role':"form", ->
             div class:"form-group ", ->
               div class:"col-xs-12", ->
-                input type:"text", class:"form-control validator", validator:"password", required:"required",
+                input type:"text", class:"form-control validator", validator:"password", required:"required", 'ng-model':'user.name',
                 description:'用户名', placeholder:'用户名', ->
-                input type:"password", class:"form-control validator", validator:"password", required:"required",
+                input type:"password", class:"form-control validator", validator:"password", required:"required", 'ng-model':'user.password',
                 description:'密码', placeholder:'密码', ->
             div class:"form-group", ->
               div class:"col-xs-12", ->

@@ -94,8 +94,8 @@ html ->
           ul class:"nav navbar-nav navbar-right", ->
             li class:"dropdown", ->
               a href:'javascript:void(0)', class:"dropdown-toggle", 'data-toggle':"dropdown", ->
-                b id: "usertype", style:"display:none", -> 'kk'
-                b id: "username", -> 'tt'
+                b id: "usertype", style:"display:none", -> ''
+                b id: "username", -> ''
                 coffeescript ->
                   require.config
                     paths:
@@ -109,8 +109,8 @@ html ->
                     $.each $('.nav li a'), (i,o) ->
                       if actived is $(o).attr('href')
                         $(o).parent().addClass('active').siblings('li').removeClass('active')
-                    $('#username').html($.cookie('nickname') or '')
-                    $('#usertype').html($.cookie('usertype') or '')
+                    $('#username').html($.cookie('name') or '')
+                    $('#usertype').html($.cookie('role') or '')
                 b class:"caret"
               ul class:"dropdown-menu", ->
                 li ->

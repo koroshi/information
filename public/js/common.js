@@ -37,12 +37,12 @@ var common = (function($) {
     }
 
     /* checkbox start */
-    function selectAllChk() {
-        $('.chkItem').prop('checked', $('#chkAllItems').prop('checked'));
+    function selectAllChk(all, item) {
+        $(item).prop('checked', $(all).prop('checked'));
     }
 
-    function selectItemChk() {
-        $('#chkAllItems').prop('checked', $(".chkItem:checked").length === $(".chkItem").length);
+    function selectItemChk(item, all) {
+        $(all).prop('checked', $(item + ":checked").length === $(item).length);
     }
 
     /* checkbox end */
@@ -63,8 +63,6 @@ var common = (function($) {
         var tag = document.getElementById(name);
         return tag.scrollTop;
     }
-
-
 
     function getClientHeight() {
         var clientHeight = 0;

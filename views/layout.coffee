@@ -76,20 +76,10 @@ html ->
           a class:"navbar-brand", href:"#", ->'会议预约管理系统'
         div class:"collapse navbar-collapse",style:"min-width:794px;", ->
           ul class:"nav navbar-nav", id:'headNav', ->
-            li class:"", -> a href:"/booking", -> '预约'
-            li class:"", -> a href:"/MB/index", -> '我的预约'
-            li class:"", -> a href:"/invite", ->
-              text '与会通知&nbsp'
-              span class:"badge", ->'new'
-            li class:"", -> a href:"/audit", -> '审批'
-            li class:"adminauthor mouseoper", ->
-              a class:'managerarea', href:"javascript:void(0)", ->
-                text '管理'
-                b class:"caret"
-            li class:"mouseoper", ->
-              a class:'helparea', href:"javascript:void(0)", ->
-                text ' 帮助'
-                b class:"caret"
+            li class:"", -> a href:"/", -> '首页'
+            li class:"", -> a href:"/publish", -> '发布'
+            li class:"/reg", -> a href:"/reg", -> '注册'
+
 
           ul class:"nav navbar-nav navbar-right", ->
             li class:"dropdown", ->

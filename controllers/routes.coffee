@@ -15,3 +15,6 @@ app.get '/comment', (req, res) ->
 
 app.get '/manage/user', (req, res) ->
   res.render 'manage/user'
+
+app.get '/publish', (req, res) ->
+  res.render 'publish'

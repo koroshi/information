@@ -7,13 +7,13 @@ block 'script', ->
   script src:"/js/lib/require.js", 'data-main':"/js/information/information.js"
 
 block 'main', ->
-  div class:"modal fade ", id:"createUserModal", 'tabindex':"-1", 'role':"dialog", 'aria-labelledby':"createUserModalLabel",'aria-hidden':"true",'ng-controller':'editCtrl', ->
+  div class:"modal fade ", id:"infoModal", 'tabindex':"-1", 'role':"dialog", 'aria-labelledby':"infoModalLabel",'aria-hidden':"true", ->
     div class:"modal-dialog", ->
       div class:"modal-content", ->
         div class:"modal-header", ->
           button type:"button",class:"close",'data-dismiss':"modal",'aria-hidden':"true", ->
             text '&times;'
-          h4 class:"modal-title", id:"createUserModalLabel", ->
+          h4 class:"modal-title", id:"infoModalLabel", ->
             text '创建用户'
         div class:"modal-body", ->
           div class:"form-horizontal", ->
@@ -49,7 +49,7 @@ block 'main', ->
           span class:"glyphicon glyphicon-trash", ->
           text ' 删除'
         div class: 'col-xs-3 input-group pull-right searchPanel', ->
-          input type:"text", class:"form-control", id:"searchInput", placeholder:"请输入用户名称或者邮箱", 'ng-model':'search', ->
+          input type:"text", class:"form-control", id:"searchInput", placeholder:"请输入文章名称", 'ng-model':'search', ->
           span class: 'input-group-btn', ->
             button type:"submit", class:"btn btn-default", id:"searchBtn", -> '搜索'
 
@@ -62,7 +62,7 @@ block 'main', ->
           thead class:"thead-color", ->
             tr ->
               th style:'width:30px', ->
-                input type:'checkbox', class :'checkbox', id:'chkAllItems', onclick:'common.selectAllChk()',
+                input type:'checkbox', class :'checkbox', id:"chkAllItems", onclick:"common.selectAllChk(this, '.chkItem')",
               th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='name'; orderMode=!orderMode", -> '用户名'
               th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='phone'; orderMode=!orderMode", ->'手机号码'
               th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='email'; orderMode=!orderMode", ->'邮箱'
@@ -71,7 +71,7 @@ block 'main', ->
           tbody ->
             tr class:'', 'ng-repeat':'user in users | searchFilter:search | orderBy:orderColumn:orderMode', ->
               td style:'width:30px', ->
-                input type:'checkbox', class :'checkbox chkItem', value:'{{user._id}}', onclick:'common.selectItemChk()',
+                input type:'checkbox', class :'checkbox chkItem', value:'{{user._id}}', onclick:"common.selectItemChk('.chkItem', '#chkAllItems')",
               td class:"col-xs-2", 'ng-bind':'user.name',  ->
               td class:"col-xs-2", 'ng-bind':'user.phone', ->
               td class:"col-xs-3", 'ng-bind':'user.email', ->

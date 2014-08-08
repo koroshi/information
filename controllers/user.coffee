@@ -1,5 +1,5 @@
 User = require '../model/user'
-JsonResult = require '../model/jsonResult'
+
 
 app.post '/user', (req, res) ->
   user = new User()

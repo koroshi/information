@@ -8,6 +8,7 @@ global.$WEBPATH = __dirname
 global.Guid = require 'guid'
 global.async = require 'async'
 global._ = require 'underscore'
+global.JsonResult = require "#{__dirname}/model/JsonResult"
 
 # all environments
 app.set 'views', "#{__dirname}/views"
@@ -31,6 +32,7 @@ require "./controllers/routes"
 require "./controllers/user"
 require "./controllers/information"
 require "./controllers/comment"
+require "./controllers/publish"
 
 
 

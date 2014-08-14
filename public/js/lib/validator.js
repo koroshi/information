@@ -1,5 +1,5 @@
-(function($){
-    validator = {
+ var validator = (function($){
+    return {
         className:'validator',
         compareMode: {
             lt : '<',
@@ -26,7 +26,7 @@
 
             var txt = arguments[1] || $(obj).val() || $(obj).html();
 
-            var isRequired = $(obj).attr('required');//是否必须
+            var isRequired = $(obj).get(0).hasAttribute('required');//是否必须
             var isCompare = $(obj).attr('compare');//是否比较
 
             if(txt.trim().length == 0) {
@@ -52,6 +52,8 @@
                 common.popBy(obj, '对应的正则表达式不存在');
                 return false;
             }
+
+            if(action.reg.constructor !== RegExp) action.reg = new RegExp(action.reg);
 
             if(!action.reg.test(txt)) {
                 common.popBy(obj, des+ action.err);
@@ -111,5 +113,6 @@
 
 
     };
+
 })($)
 

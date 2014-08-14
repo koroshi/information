@@ -4,7 +4,7 @@ block 'title', ->
   title '用户'
 
 block 'script', ->
-  script src:"/js/lib/require.js"
+  script src:"/js/lib/require.js", 'data-main':'/js/main.js'
 
 block 'main', ->
   div id:'user', style:'padding-top:50px', 'ng-controller':'usersCtrl', onselectstart:'return false', ->
@@ -16,21 +16,6 @@ block 'main', ->
 
     div class: 'container fix-top-2-tablelist-default fixed-width', ->
       p -> '标题:'
-      input class:'form-control validator',  type:'text', ->
+      input class:'form-control validator', required:'', validator:'specialChar', description:'标题',  type:'text', ->
       p -> '正文:'
-      textarea class:'form-control', style:' height:600px;', ->
-
-  coffeescript ->
-    @publish = () ->
-      $.post '/publish', {title:'xxx', cotent:'xxxxx'}, (data) ->
-        console.log(typeof $)
-#
-#    require.config
-#      paths:
-#        'jquery':'/js/lib/jquery'
-#        'common':'/js/common'
-#        'validator':'/js/lib/validator'
-#      shim:
-#        'validator': ['jquery', 'common'],
-#    require ['jquery', 'validator'], () ->
-
+      textarea class:'form-control validator', required:'', validator:'specialChar', description:'标题', style:' height:600px;', ->

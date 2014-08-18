@@ -14,10 +14,10 @@ app.post '/user', (req, res) ->
 
 app.put '/user', (req, res) ->
   user = req.body
-  console.log(user.name)
-  return res.json JsonResult.getError('用户不存在') unless user?._id
-  User.findByIdAndUpdate user._id, user, (err, doc) ->
-    console.log(doc.name)
+  uid = user?._id
+  return res.json JsonResult.getError('用户不存在') unless uid
+  delete user._id
+  User.findByIdAndUpdate uid, {$set:user}, (err, doc) ->
     return res.json JsonResult.getError(err.message) if err
     res.json JsonResult.getSuccess(doc)
 

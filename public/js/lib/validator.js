@@ -81,9 +81,7 @@
         },
 
         bind:function(parent) {
-            var obj = $('.validator');
-            if(parent != null)
-            obj =$(parent).find('.validator');
+            var obj = parent? $(parent).find('.validator'): $('.validator');
             var _this = this;
             obj.blur(function() {
                 _this.validate(this)
@@ -100,9 +98,7 @@
         validateAll:function(parent) {
             var _this = this;
             var ret = 0;
-            var obj = $('.validator');
-            if(parent != null)
-                obj =$(parent).find('.validator');
+            var obj = parent? $(parent).find('.validator'): $('.validator');
 
             obj.each(function(i, o) {
                 if( !_this.validate(o)) ret ++;
@@ -110,8 +106,6 @@
 
             return ret == 0;
         }
-
-
     };
 
 })($)

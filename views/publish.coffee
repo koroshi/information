@@ -4,7 +4,7 @@ block 'title', ->
   title '用户'
 
 block 'script', ->
-  script src:"/js/lib/require.js", 'data-main':'/js/main.js'
+  script src:"/js/lib/$require.js", 'data-main':'/js/main.js'
 
 block 'main', ->
   div id:'user', style:'padding-top:50px', 'ng-controller':'usersCtrl', onselectstart:'return false', ->

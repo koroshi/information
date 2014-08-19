@@ -3,7 +3,7 @@ define([], function() {
         baseUrl:'/js/lib',
         paths: {
             bootstrap: 'bootstrap',
-            angular:'angular',
+            angular:'/js/lib/angular',
             underscore: 'underscore',
             extension:'extension',
             common: '/js/common',
@@ -19,6 +19,6 @@ define([], function() {
         }
     });
 
-    require(['bootstrap', 'extension', 'underscore','validator', 'common', 'angular'])
+    require(['bootstrap'])
 });
 

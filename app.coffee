@@ -32,7 +32,6 @@ require "./controllers/routes"
 require "./controllers/user"
 require "./controllers/information"
 require "./controllers/comment"
-require "./controllers/publish"
 
 
 

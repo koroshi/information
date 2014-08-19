@@ -2,12 +2,12 @@
     return {
         className:'validator',
         compareMode: {
-            lt : '<',
-            eq : '==',
-            gt : '>',
-            le : '<=',
-            ge : '>=',
-            ne : '!='
+            lt : function(org, target) { return org < target  },
+            eq : function(org, target) { return org == target  },
+            gt : function(org, target) { return org > target  },
+            le : function(org, target) { return org <= target  },
+            ge : function(org, target) { return org >= target  },
+            ne : function(org, target) { return org != target  }
         },
         actions :{
             email:{reg:/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, err:'格式不正确'},
@@ -76,8 +76,7 @@
 
             var objVal =  $(obj).val() || $(obj).html();
             var targetVal =  $(target).val() || $(target).html();
-
-            return eval(objVal + this.compareMode[mode] + targetVal);
+            return this.compareMode[mode](objVal, targetVal);
         },
 
         bind:function(parent) {
@@ -108,5 +107,5 @@
         }
     };
 
-})($)
+})($);
 

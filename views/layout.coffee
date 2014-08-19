@@ -89,11 +89,10 @@ html ->
                 coffeescript ->
                   require.config
                     paths:
-                      'jquery':'/js/lib/jquery'
                       'jquery.cookies':'/js/lib/jquery.cookies'
                     shim:
                       'jquery.cookies': ['jquery'],
-                  require ['jquery', 'jquery.cookies'], () ->
+                  require ['jquery.cookies'], () ->
                     actived = location.pathname
                     type = $.cookie('type')
                     $.each $('.nav li a'), (i,o) ->

@@ -4,7 +4,7 @@ block 'title', ->
   title '用户'
 
 block 'script', ->
-  script src:"/js/lib/require.js", 'data-main':"/js/information/information.js"
+  script src:"/js/lib/$require.js", 'data-main':"/js/information/information.js"
 
 block 'main', ->
   div class:"modal fade ", id:"infoModal", 'tabindex':"-1", 'role':"dialog", 'aria-labelledby':"infoModalLabel",'aria-hidden':"true", ->

@@ -1,5 +1,6 @@
 define([
-    'app'
+    'app',
+    'underscore'
 ], function (app) {
     app.controller('usersCtrl',['$scope', '$http', '$window', usersCtrl]);
 

@@ -2,7 +2,6 @@ define([], function() {
     require.config({
         baseUrl:'/js/lib',
         paths: {
-            jquery: 'jquery',
             bootstrap: 'bootstrap',
             angular:'angular',
             underscore: 'underscore',
@@ -20,6 +19,6 @@ define([], function() {
         }
     });
 
-    require(['jquery', 'bootstrap', 'extension', 'underscore','validator', 'common'])
+    require(['bootstrap', 'extension', 'underscore','validator', 'common', 'angular'])
 });
 

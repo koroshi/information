@@ -2,7 +2,7 @@ define([
     'app'
 ], function (app) {
 
-    app.factory('information',['$http', function($http) {
+    app.factory('informationSvc',['$http', function($http) {
         return {
             delete: function(user) {
                 var def = $.Deferred();

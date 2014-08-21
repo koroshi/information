@@ -4,14 +4,13 @@ define([
     app.controller('editCtrl',['$scope', '$http', '$window', editCtrl]);
 
     function editCtrl($scope, $http, $window, $element) {
-        $scope.user = {
+        $scope.information = {
             _id:'',
-            name : '',
-            password : '',
-            confirm : '',
-            email : '',
-            phone : '',
-            address : ''
+            title : '',
+            content : '',
+            addedTime : '',
+            status : '',
+            user : {}
         };
 
         $scope.update = function() {

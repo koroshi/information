@@ -68,7 +68,7 @@ block 'main', ->
               th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='email'; orderMode=!orderMode", ->'邮箱'
               th class:"col-xs-2", style:'cursor:pointer', ->'角色'
               th class:"col-xs-3", ->'操作'
-          tbody ->
+          tbody  class:'userList', style:'display:none',->
             tr class:'', 'ng-repeat':'user in users | searchFilter:search | orderBy:orderColumn:orderMode', ->
               td style:'width:30px', ->
                 input type:'checkbox', class :'checkbox chkItem', value:'{{user._id}}', onclick:'common.selectItemChk()',

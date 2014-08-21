@@ -1,14 +1,14 @@
 define([
     'app',
+    'extension',
     'underscore'
 ], function (app) {
-    app.controller('usersCtrl',['$scope', '$http', '$window', usersCtrl]);
+    app.controller('usersCtrl',['$scope', '$window', 'userSvc', usersCtrl]);
 
-    function usersCtrl($scope, $http, $window, $element) {
-        $http.get('/users').success(function(json) {
-            if(!json) return;
-            if(!json.code || json.code == 'fail')  return;
-            $scope.users = json.result;
+    function usersCtrl($scope, $window, userSvc) {
+        userSvc.retrieve().done(function(ret) {
+            $('.userList').show();
+            $scope.users = ret;
         });
 
         $scope.$on('$destroy', function() {
@@ -17,11 +17,12 @@ define([
 
         $scope.remove = function(scope, obj) {
             if(confirm('确认删除用户吗？')) {
-                $http.delete('/user/' + scope.user._id).success(function (json) {
-                    if (!json) return common.popBy(obj, '未知的错误');
-                    if (!json.code || json.code == 'fail') return common.popBy(obj, json.result);
-                    $scope.users.removeAt(scope.$index)
-                });
+                user.delete(scope.user)
+                    .done(function() {
+                        $scope.users.removeAt(scope.$index)
+                    }).fail(function(msg) {
+                        common.popBy(obj, msg)
+                    });
             }
         };
 
@@ -33,20 +34,16 @@ define([
             });
 
             if(confirm('确认删除选中的用户吗？')) {
-                $.ajax({
-                    type: "DELETE",
-                    url: "/users",
-                    data: JSON.stringify(ids),
-                    contentType: "application/json; charset=utf-8"
-                }).success(function (json) {
-                    if (!json) return common.popBy(obj, '未知的错误');
-                    if (!json.code || json.code == 'fail') return common.popBy(obj, json.result);
-
+                user.multiDelete(ids).done(function() {
                     $scope.users = _.reject($scope.users, function(item) {
                         return ids.indexOf(item._id) != -1;
                     });
 
                     $scope.$apply();
+                    $('#chkAllItems').prop('checked', false);
+
+                }).fail(function(msg) {
+                    common.popBy(obj, msg);
                 });
             }
         };

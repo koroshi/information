@@ -14,38 +14,27 @@ block 'main', ->
           button type:"button",class:"close",'data-dismiss':"modal",'aria-hidden':"true", ->
             text '&times;'
           h4 class:"modal-title", id:"infoModalLabel", ->
-            text '创建用户'
+            text '新闻详情'
         div class:"modal-body", ->
           div class:"form-horizontal", ->
             div class: "input-group col-xs-12", ->
-              span class: 'input-group-addon addon-width-4 ', style:'width:95px; text-align:right;', ->'姓名：'
-              input class: "form-control validator", validator:'specialChar', id:'txtName',
-              description:'姓名', required:'', type:"text", 'ng-model':'user.name', ->
+              span class: 'input-group-addon addon-width-4 ', style:'width:95px; text-align:right;', ->'标题：'
+              input class: "form-control validator", validator:'specialChar', id:'txtTitle',
+              description:'标题', required:'', type:"text", 'ng-model':'information.title', ->
             br ->
             div class: "input-group col-xs-12", ->
-              span class: 'input-group-addon addon-width-4', style:'width:95px; text-align:right;', -> '邮箱：'
-              input class: "form-control validator",  validator:'email', id:'txtEmail',
-              description:'邮箱', type:"text",  value:'{{user.email}}',
-            br ->
-            div class: "input-group col-xs-12", ->
-              span class: 'input-group-addon addon-width-4', -> '手机号码：'
-              input class: "form-control validator", type:"text",  validator:'phone', id:'txtPhone',
-              description:'手机号码', value:'{{user.phone}}',
-            br ->
-            div class: "input-group col-xs-12", ->
-              span class: 'input-group-addon addon-width-4', style:'width:95px; text-align:right;', -> '地址：'
-              input class: "form-control validator", validator:'specialChar', id:'txtAddr',
-              description:'地址',  required:'', type:"text", value:'{{user.address}}',
-        div class:"modal-footer",->
-          button class:"btn btn-primary  col-xs-offset-6", id:"btnSaveUser", type:"button", 'ng-click':'update()',  ->'保存'
+              span class: 'input-group-addon addon-width-4', style:'width:95px; text-align:right;', -> '内容：'
+              input class: "form-control validator",  validator:'email', id:'txtContent',
+              description:'内容', type:"text",  value:'{{information.content}}',
 
+        div class:"modal-footer",->
           button type:"button", class:"btn btn-default", 'data-dismiss':"modal",->
             text '关闭'
 
-  div id:'user', style:'padding-top:50px', 'ng-controller':'usersCtrl', onselectstart:'return false', ->
+  div id:'informationList', style:'padding-top:50px', 'ng-controller':'infoCtrl', onselectstart:'return false', ->
     div class:"well well-sm fix-top-2", ->
       div class :"container fixed-width", ->
-        button type:"button", class:"btn btn-primary gap",  id:'btnDelete', 'ng-click':'removeUsers(this, $event.target)', ->
+        button type:"button", class:"btn btn-primary gap",  id:'btnDelete', 'ng-click':'multiRemoveInfo(this, $event.target)', ->
           span class:"glyphicon glyphicon-trash", ->
           text ' 删除'
         div class: 'col-xs-3 input-group pull-right searchPanel', ->
@@ -56,17 +45,15 @@ block 'main', ->
     div class: 'container fix-top-2-tablelist-default fixed-width', ->
       h3 class: 'pageInfo', ->
         img src: '/images/header.png',class: 'circlePic', ->
-        text '&nbsp用户'
+        text '&nbsp信息'
       div class: 'panel panel-default', ->
-        table class: 'table table-striped', style:"table-layout:fixed;word-wrap:break-word;", id: 'tblUses', ->
+        table class: 'table table-striped', style:"table-layout:fixed;word-wrap:break-word;", id: 'tblInfo', ->
           thead class:"thead-color", ->
             tr ->
               th style:'width:30px', ->
                 input type:'checkbox', class :'checkbox', id:"chkAllItems", onclick:"common.selectAllChk(this, '.chkItem')",
-              th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='name'; orderMode=!orderMode", -> '用户名'
-              th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='phone'; orderMode=!orderMode", ->'手机号码'
-              th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='email'; orderMode=!orderMode", ->'邮箱'
-              th class:"col-xs-2", style:'cursor:pointer', ->'角色'
+              th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='name'; orderMode=!orderMode", -> '标题'
+              th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='phone'; orderMode=!orderMode", -> '时间'
               th class:"col-xs-3", ->'操作'
           tbody ->
             tr class:'', 'ng-repeat':'user in users | searchFilter:search | orderBy:orderColumn:orderMode', ->

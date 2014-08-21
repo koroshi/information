@@ -7,7 +7,7 @@ app.post '/user', (req, res) ->
   console.log user
   user.save (err, doc) ->
     return res.json JsonResult.getError(err.message) if err?
-    res.cookie 'id', doc._id
+    res.cookie 'id', doc._id.toString()
     res.cookie 'name', doc.name
     res.cookie 'role', doc.role
     res.json JsonResult.getSuccess(doc)
@@ -49,7 +49,7 @@ app.post '/login', (req, res) ->
   User.find {name:name, password:pwd}, (err, docs) ->
     return res.json JsonResult.getError(err.message) if err?
     return res.json JsonResult.getError('登录失败，用户名或者密码不正确') if(docs.length is 0)
-    res.cookie 'id', docs[0]._id
+    res.cookie 'id', docs[0]._id.toString()
     res.cookie 'name', docs[0].name
     res.cookie 'role', docs[0].role
     res.json JsonResult.getSuccess(docs[0])

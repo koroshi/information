@@ -3,9 +3,9 @@ define([
     'extension',
     'underscore'
 ], function (app) {
-    app.controller('usersCtrl',['$scope', '$http', '$window', 'information', usersCtrl]);
+    app.controller('usersCtrl',['$scope', '$http', '$window', 'informationSvc', usersCtrl]);
 
-    function usersCtrl($scope, $http, $window, information) {
+    function usersCtrl($scope, $http, $window, informationSvc) {
         $http.get('/users').success(function(json) {
             if(!json) return;
             if(!json.code || json.code == 'fail')  return;
@@ -18,7 +18,7 @@ define([
 
         $scope.remove = function(scope, obj) {
             if(confirm('确认删除用户吗？')) {
-                information.delete(scope.user)
+                informationSvc.delete(scope.user)
                     .done(function() {
                         $scope.users.removeAt(scope.$index)
                     }).fail(function(msg) {
@@ -35,7 +35,7 @@ define([
             });
 
             if(confirm('确认删除选中的用户吗？')) {
-                information.multiDelete(ids).done(function() {
+                informationSvc.multiDelete(ids).done(function() {
                     $scope.users = _.reject($scope.users, function(item) {
                         return ids.indexOf(item._id) != -1;
                     });
@@ -51,7 +51,7 @@ define([
         };
 
         $scope.showEditModal = function(scope, obj) {
-            var editScope = $('#createUserModal').scope();
+            var editScope = $('#createInfoModal').scope();
 
             for(var each in scope.user)
                 editScope.user[each] = scope.user[each]

@@ -14,27 +14,27 @@ app.put '/information', (req, res) ->
   uid = user?._id
   return res.json JsonResult.getError('用户不存在') unless uid
   delete user._id
-  User.findByIdAndUpdate uid, {$set:user}, (err, doc) ->
+  Information.findByIdAndUpdate uid, {$set:user}, (err, doc) ->
     return res.json JsonResult.getError(err.message) if err
     res.json JsonResult.getSuccess(doc)
 
 
 
 app.get '/informations', (req, res) ->
-  User.find().exec (err, docs) ->
+  Information.find().populate('user').exec (err, docs) ->
     return res.json JsonResult.getError(err.message) if err?
     res.json JsonResult.getSuccess(docs)
 
 app.delete '/information/:id', (req, res)->
   id = req.params.id
   return res.json JsonResult.getError('用户编号不存在') unless id
-  User.remove {_id:id}, (err, count) ->
+  Information.remove {_id:id}, (err, count) ->
     return res.json JsonResult.getError(err.message) if err?
     res.json JsonResult.getSuccess(count)
 
 app.delete '/informations', (req, res) ->
   ids = req.body
   return res.json JsonResult.getError('用户编号不存在') unless ids
-  User.remove {_id:{$in:ids}}, (err, count) ->
+  Information.remove {_id:{$in:ids}}, (err, count) ->
     return res.json JsonResult.getError(err.message) if err?
     res.json JsonResult.getSuccess(count)

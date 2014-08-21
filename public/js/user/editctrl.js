@@ -1,9 +1,9 @@
 define([
     'app'
 ], function (app) {
-    app.controller('editCtrl',['$scope', '$http', '$window', editCtrl]);
+    app.controller('editCtrl',['$scope', '$http', '$window', 'userSvc', editCtrl]);
 
-    function editCtrl($scope, $http, $window, $element) {
+    function editCtrl($scope, $http, $window, userSvc) {
         $scope.user = {
             _id:'',
             name : '',
@@ -16,16 +16,18 @@ define([
 
         $scope.update = function() {
             if(!validator.validateAll('#createUserModal')) return;
-            $http.put('/user', $scope.user).success(function(json) {
+            userSvc.update($scope.user).done(function() {
                 var scope = $('#user').scope();
-
                 var user = _.find(scope.users, function(item) {return item._id == $scope.user._id;});
 
                 for(var each in $scope.user)
                     user[each] = $scope.user[each]
 
                 $('#createUserModal').modal('hide');
+            }).fail(function() {
+
             });
+
         }
     }
 });

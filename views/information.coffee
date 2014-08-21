@@ -52,20 +52,20 @@ block 'main', ->
             tr ->
               th style:'width:30px', ->
                 input type:'checkbox', class :'checkbox', id:"chkAllItems", onclick:"common.selectAllChk(this, '.chkItem')",
-              th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='name'; orderMode=!orderMode", -> '标题'
-              th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='phone'; orderMode=!orderMode", -> '时间'
+              th class:"col-xs-2", style:'cursor:pointer', 'ng-click':"orderColumn='title'; orderMode=!orderMode", -> '标题'
+              th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='addedTime'; orderMode=!orderMode", -> '时间'
+              th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='user.name'; orderMode=!orderMode", -> '作者'
               th class:"col-xs-3", ->'操作'
           tbody ->
-            tr class:'', 'ng-repeat':'user in users | searchFilter:search | orderBy:orderColumn:orderMode', ->
+            tr class:'', 'ng-repeat':'information in informations | searchFilter:search | orderBy:orderColumn:orderMode', ->
               td style:'width:30px', ->
-                input type:'checkbox', class :'checkbox chkItem', value:'{{user._id}}', onclick:"common.selectItemChk('.chkItem', '#chkAllItems')",
-              td class:"col-xs-2", 'ng-bind':'user.name',  ->
-              td class:"col-xs-2", 'ng-bind':'user.phone', ->
-              td class:"col-xs-3", 'ng-bind':'user.email', ->
-              td class:"col-xs-2", 'ng-bind':'user.role | roleFilter', ->
+                input type:'checkbox', class :'checkbox chkItem', value:'{{information._id}}', onclick:"common.selectItemChk('.chkItem', '#chkAllItems')",
+              td class:"col-xs-2", 'ng-bind':'information.title',  ->
+              td class:"col-xs-3", 'ng-bind':'information.addedTime', ->
+              td class:"col-xs-3", 'ng-bind':'information.user.name', ->
               td class:"col-xs-3", ->
-                a 'gap', href:'javascript:void(0)', 'ng-click':'remove(this, $target.event)', id:'{{user._id}}', -> '删除'
-                a href:'javascript:void(0)',  'ng-click':'showEditModal(this, $target.event)', -> '编辑'
+                a 'gap', href:'javascript:void(0)', 'ng-click':'remove(this, $target.event)', id:'{{information._id}}', -> '删除'
+                a href:'javascript:void(0)',  'ng-click':'showDetail(this, $target.event)', -> '详情'
 
 
 block 'lazyscript', ->

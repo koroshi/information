@@ -1,6 +1,6 @@
 schema = new Schema
   title: {type: String, default :''}
-  content: {type:Date, default : new Date()}
+  content: {type:String, default : ''}
   addedTime:{type:Date, default : new Date()}
   status: {type:Number, default :0}
 

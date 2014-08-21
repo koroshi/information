@@ -3,14 +3,20 @@ define([
     'extension',
     'underscore'
 ], function (app) {
-    app.controller('usersCtrl',['$scope', '$http', '$window', 'informationSvc', usersCtrl]);
+    app.controller('infoCtrl',['$scope', '$http', '$window', 'informationSvc', infoCtrl]);
 
-    function usersCtrl($scope, $http, $window, informationSvc) {
-        $http.get('/users').success(function(json) {
-            if(!json) return;
-            if(!json.code || json.code == 'fail')  return;
-            $scope.users = json.result;
-        });
+    function infoCtrl($scope, $http, $window, informationSvc) {
+//        $http.get('/users').success(function(json) {
+//            if(!json) return;
+//            if(!json.code || json.code == 'fail')  return;
+//            $scope.users = json.result;
+//        });
+        informationSvc.retrieve()
+            .done(function(info) {
+                $scope.informations = info;
+            }).fail(function() {
+
+            });
 
         $scope.$on('$destroy', function() {
             console.log($scope.users.length + '..')
@@ -18,9 +24,9 @@ define([
 
         $scope.remove = function(scope, obj) {
             if(confirm('确认删除用户吗？')) {
-                informationSvc.delete(scope.user)
+                informationSvc.delete(scope.information)
                     .done(function() {
-                        $scope.users.removeAt(scope.$index)
+                        $scope.informations.removeAt(scope.$index)
                     }).fail(function(msg) {
                         common.popBy(obj, msg)
                     });
@@ -50,13 +56,13 @@ define([
             }
         };
 
-        $scope.showEditModal = function(scope, obj) {
+        $scope.showDetail = function(scope, obj) {
             var editScope = $('#createInfoModal').scope();
 
             for(var each in scope.user)
                 editScope.user[each] = scope.user[each]
 
-            $('#createUserModal').modal('show');
+            $('#infoModal').modal('show');
         }
     }
 });

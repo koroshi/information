@@ -17,7 +17,7 @@ define([
         return function(items, keyword){
             if(!keyword) return items;
             return _.filter(items, function(item) {
-                return item.name.indexOf(keyword) >-1 || item.email.indexOf(keyword) > -1;
+                return  item.title.indexOf(keyword) > -1;
             });
         }
     });

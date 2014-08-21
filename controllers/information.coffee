@@ -21,6 +21,7 @@ app.put '/information', (req, res) ->
 
 
 app.get '/informations', (req, res) ->
+  console.log '...'
   Information.find().populate('user').exec (err, docs) ->
     return res.json JsonResult.getError(err.message) if err?
     res.json JsonResult.getSuccess(docs)

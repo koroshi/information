@@ -18,4 +18,4 @@ block 'main', ->
       p -> '标题:'
       input class:'form-control validator', required:'required', 'ng-model':'information.title', validator:'specialChar', description:'标题',  type:'text', ->
       p -> '正文:'
-      textarea class:'form-control validator', required:"required",'ng-model':'information.content', validator:'specialChar', description:'内容', style:' height:600px;', ->
+      textarea class:'form-control validator', required:"required",'ng-model':'information.content', validator:'htmlChar', description:'内容', style:' height:600px;', ->

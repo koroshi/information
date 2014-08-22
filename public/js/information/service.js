@@ -23,7 +23,7 @@ define([
                 $.ajax({
                     type: "DELETE",
                     url: "/informations",
-                    data: JSON.stringify(ids),
+                    data:JSON.stringify(ids),
                     contentType: "application/json; charset=utf-8"
                 }).success(function (json) {
                     if (!json) return def.reject('未知的错误');
@@ -38,11 +38,11 @@ define([
                 var def = $.Deferred();
                 var promise = def.promise();
 
-                $http.get('/informations').success(function(json) {
+                $http.get('/informations', {params : pager.condition}).success(function(json) {
                     if (!json) return def.reject('未知的错误');
                     if (!json.code || json.code == 'fail')  return def.reject(json.result);
-                    def.resolve(json.result);
-                })
+                    def.resolve(json);
+                });
 
                 return promise;
             }

@@ -1,25 +1,10 @@
 define([
-    'app'
+    'app',
+    'moment'
 ], function (app) {
-    count = 0;
-    app.filter('roleFilter', function() {
-        var role = {
-            normal:'普通用户',
-            vip:'VIP用户',
-            admin:'管理员'
-        };
+    app.filter('dateFilter', function() {
         return function(input) {
-            return role[input];
+            return  moment(input).format('YYYY-MM-DD HH:mm:ss');
         }
     });
-
-    app.filter('searchFilter',function(){
-        return function(items, keyword){
-            if(!keyword) return items;
-            return _.filter(items, function(item) {
-                return  item.title.indexOf(keyword) > -1;
-            });
-        }
-    });
-
 });

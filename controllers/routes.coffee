@@ -18,3 +18,6 @@ app.get '/manage/user', (req, res) ->
 
 app.get '/publish', (req, res) ->
   res.render 'publish'
+
+app.get '/test', (req, res) ->
+  res.json JsonResult.pageSuccess(['aa'], 10)

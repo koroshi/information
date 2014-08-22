@@ -1,12 +1,21 @@
-﻿(function () {
-    var scriptNode = document.createElement('script');
+﻿//(function () {
+//    var scriptNode = document.createElement('script');
+//
+//    scriptNode.type = "text/javascript";
+//    scriptNode.src = "/lib/hashchange.js";
+//
+//    document.getElementsByTagName("head")[0].appendChild(scriptNode);
+//})();
 
-    scriptNode.type = "text/javascript";
-    scriptNode.src = "/lib/hashchange.js";
+function pagerDelegate(obj, method, mode) {
+    var delegate = function () {
+        var args = [];
+        args.push(mode);
+        method.apply(obj, args);
+    };
 
-    document.getElementsByTagName("head")[0].appendChild(scriptNode);
-})();
-
+    return delegate;
+}
 
 function Pager(pageSize, recordCount, pageindex, _condition, callBack) {
     this.pagesize = pageSize;
@@ -411,3 +420,11 @@ Pager.prototype.generateNumsText_1 = function () {
 Pager.prototype.handleTextChanged = function () {
     this.temppage = arguments[0].objRef.value;
 }
+
+
+if ( typeof define === "function" && define.amd ) {
+    define(['hashchange'], function () { return jQuery; } );
+}
+
+
+

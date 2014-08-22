@@ -53,3 +53,7 @@ app.post '/login', (req, res) ->
     res.cookie 'name', docs[0].name
     res.cookie 'role', docs[0].role
     res.json JsonResult.getSuccess(docs[0])
+
+app.get '/logout', (req, res) ->
+  (res.clearCookie k) for k,v of req.cookies
+  res.redirect('/login')

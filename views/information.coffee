@@ -1,10 +1,17 @@
 extend "layout"
 
 block 'title', ->
-  title '用户'
+  title '信息'
+  link href:"/css/pager.css", rel:"stylesheet"
 
 block 'script', ->
   script src:"/js/lib/$require.js", 'data-main':"/js/information/information.js"
+  coffeescript ->
+    @query_list =
+      pageindex : 1
+      pagesize : 10
+      keyword:''
+
 
 block 'main', ->
   div class:"modal fade ", id:"infoModal", 'tabindex':"-1", 'role':"dialog", 'aria-labelledby':"infoModalLabel",'aria-hidden':"true", ->
@@ -56,17 +63,17 @@ block 'main', ->
               th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='addedTime'; orderMode=!orderMode", -> '时间'
               th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='user.name'; orderMode=!orderMode", -> '作者'
               th class:"col-xs-3", ->'操作'
-          tbody ->
-            tr class:'', 'ng-repeat':'information in informations | searchFilter:search | orderBy:orderColumn:orderMode', ->
+          tbody class:'listArea', style:'display:none', ->
+            tr class:'', 'ng-repeat':'information in informations  | orderBy:orderColumn:orderMode', ->
               td style:'width:30px', ->
                 input type:'checkbox', class :'checkbox chkItem', value:'{{information._id}}', onclick:"common.selectItemChk('.chkItem', '#chkAllItems')",
               td class:"col-xs-2", 'ng-bind':'information.title',  ->
-              td class:"col-xs-3", 'ng-bind':'information.addedTime', ->
+              td class:"col-xs-3", 'ng-bind':'information.addedTime | dateFilter', ->
               td class:"col-xs-3", 'ng-bind':'information.user.name', ->
               td class:"col-xs-3", ->
                 a 'gap', href:'javascript:void(0)', 'ng-click':'remove(this, $target.event)', id:'{{information._id}}', -> '删除'
                 a href:'javascript:void(0)',  'ng-click':'showDetail(this, $target.event)', -> '详情'
-
+      div class:'page_y', id:'pager'
 
 block 'lazyscript', ->
 

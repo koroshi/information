@@ -64,7 +64,7 @@ block 'main', ->
               th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='user.name'; orderMode=!orderMode", -> '作者'
               th class:"col-xs-3", ->'操作'
           tbody class:'listArea', style:'display:none', ->
-            tr class:'', 'ng-repeat':'information in informations  | orderBy:orderColumn:orderMode', ->
+            tr class:'', 'ng-repeat':'information in informations  | filter: {title:search} |  orderBy:orderColumn:orderMode', ->
               td style:'width:30px', ->
                 input type:'checkbox', class :'checkbox chkItem', value:'{{information._id}}', onclick:"common.selectItemChk('.chkItem', '#chkAllItems')",
               td class:"col-xs-2", 'ng-bind':'information.title',  ->

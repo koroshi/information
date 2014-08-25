@@ -1,5 +1,5 @@
 define([
-    'angular'
+    "angular"
 ], function () {
     return angular.module('myApp', []);
 });

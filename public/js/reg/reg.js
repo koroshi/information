@@ -1,7 +1,11 @@
 
 require.config({
+    baseUrl:'/js/lib',
     paths: {
-        main: '/js/main'
+        main: '/js/main',
+        app: '/js/reg/app',
+        service: '/js/reg/service',
+        controller: '/js/reg/controller'
     }
 });
 

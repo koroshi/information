@@ -1,7 +1,11 @@
 require.config({
-    paths: {
-        main: '/js/main'
-    }
+    baseUrl:'/js/lib',
+        paths: {
+            main: '/js/main',
+            app: '/js/login/app',
+            service: '/js/login/service',
+            controller: '/js/login/controller'
+        }
 });
 
 define(["main", 'app',  'service', 'controller'], function() {

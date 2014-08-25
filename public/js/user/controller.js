@@ -17,7 +17,7 @@ define([
 
         $scope.remove = function(scope, obj) {
             if(confirm('确认删除用户吗？')) {
-                user.delete(scope.user)
+                userSvc.delete(scope.user)
                     .done(function() {
                         $scope.users.removeAt(scope.$index)
                     }).fail(function(msg) {
@@ -34,7 +34,7 @@ define([
             });
 
             if(confirm('确认删除选中的用户吗？')) {
-                user.multiDelete(ids).done(function() {
+                userSvc.multiDelete(ids).done(function() {
                     $scope.users = _.reject($scope.users, function(item) {
                         return ids.indexOf(item._id) != -1;
                     });

@@ -3,7 +3,7 @@ define([], function() {
         baseUrl:'/js/lib',
         paths: {
             bootstrap: 'bootstrap',
-            angular:'/js/lib/angular',
+            angular:'angular',
             underscore: 'underscore',
             extension:'extension',
             common: '/js/common',

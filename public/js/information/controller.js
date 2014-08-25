@@ -71,6 +71,12 @@ define([
                 editScope.user[each] = scope.user[each]
 
             $('#infoModal').modal('show');
+        };
+
+        $scope.search = function(obj) {
+            console.log($('#searchInput').val())
+            query_list.keyword = $('#searchInput').val();
+            showList({ mode: 'nums', val: 1});
         }
     }
 });

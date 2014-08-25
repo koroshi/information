@@ -45,9 +45,9 @@ block 'main', ->
           span class:"glyphicon glyphicon-trash", ->
           text ' 删除'
         div class: 'col-xs-3 input-group pull-right searchPanel', ->
-          input type:"text", class:"form-control", id:"searchInput", placeholder:"请输入文章名称", 'ng-model':'search', ->
+          input type:"text", class:"form-control", id:"searchInput", placeholder:"请输入文章名称", ->
           span class: 'input-group-btn', ->
-            button type:"submit", class:"btn btn-default", id:"searchBtn", -> '搜索'
+            button type:"submit", class:"btn btn-default", id:"searchBtn", 'ng-click': 'search($event.target)', -> '搜索'
 
     div class: 'container fix-top-2-tablelist-default fixed-width', ->
       h3 class: 'pageInfo', ->
@@ -64,7 +64,7 @@ block 'main', ->
               th class:"col-xs-3", style:'cursor:pointer', 'ng-click':"orderColumn='user.name'; orderMode=!orderMode", -> '作者'
               th class:"col-xs-3", ->'操作'
           tbody class:'listArea', style:'display:none', ->
-            tr class:'', 'ng-repeat':'information in informations  | filter: {title:search} |  orderBy:orderColumn:orderMode', ->
+            tr class:'', 'ng-repeat':'information in informations  | orderBy:orderColumn:orderMode', ->
               td style:'width:30px', ->
                 input type:'checkbox', class :'checkbox chkItem', value:'{{information._id}}', onclick:"common.selectItemChk('.chkItem', '#chkAllItems')",
               td class:"col-xs-2", 'ng-bind':'information.title',  ->
